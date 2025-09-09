@@ -1,0 +1,517 @@
+/* Rural STEM Learning Platform - Mobile First CSS */
+:root {
+  --primary: #0c7a61;
+  --secondary: #f39c12;
+  --success: #27ae60;
+  --danger: #e74c3c;
+  --dark: #2c3e50;
+  --light: #ecf0f1;
+  --bg: #f8f9fa;
+  --shadow: 0 2px 4px rgba(0,0,0,0.1);
+  --radius: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.app-header {
+  background: var(--primary);
+  color: white;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.app-header h1 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.controls select,
+.controls button {
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1);
+  color: white;
+  font-size: 0.875rem;
+}
+
+/* Tabs Navigation */
+.tabs {
+  display: flex;
+  background: white;
+  border-bottom: 2px solid var(--light);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tab {
+  flex: 1;
+  min-width: 80px;
+  padding: 0.75rem 0.5rem;
+  background: none;
+  border: none;
+  color: var(--dark);
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  background: var(--light);
+}
+
+.tab.active {
+  color: var(--primary);
+  border-bottom: 3px solid var(--primary);
+  margin-bottom: -2px;
+  font-weight: 600;
+}
+
+/* Main Content */
+main {
+  flex: 1;
+  padding: 1rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.view {
+  display: none;
+  animation: fadeIn 0.3s;
+}
+
+.view.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: var(--dark);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: block;
+  text-align: center;
+  font-weight: 500;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Game Containers */
+.game {
+  background: white;
+  padding: 1rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  min-height: 400px;
+}
+
+.game-stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.75rem;
+  background: var(--light);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.game-stats span {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Math Game Styles */
+.question-container {
+  text-align: center;
+  padding: 1rem;
+}
+
+.question {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  color: var(--dark);
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.option-btn {
+  padding: 1rem;
+  font-size: 1.125rem;
+  background: var(--light);
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.option-btn:hover:not(:disabled) {
+  background: var(--primary);
+  color: white;
+  transform: scale(1.05);
+}
+
+.option-btn.correct {
+  background: var(--success);
+  color: white;
+  border-color: var(--success);
+}
+
+.option-btn.incorrect {
+  background: var(--danger);
+  color: white;
+  border-color: var(--danger);
+}
+
+.option-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Science Matching Game */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.match-card {
+  aspect-ratio: 1;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.match-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  font-weight: 600;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.card-front {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  font-size: 1.5rem;
+}
+
+.card-back {
+  background: white;
+  border: 2px solid var(--primary);
+  color: var(--dark);
+  transform: rotateY(180deg);
+  font-size: 0.875rem;
+}
+
+.match-card.matched .card-back {
+  background: var(--success);
+  color: white;
+  border-color: var(--success);
+}
+
+/* Coding Game Styles */
+.code-block {
+  background: #2d2d2d;
+  color: #f8f8f2;
+  padding: 1rem;
+  border-radius: var(--radius);
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  white-space: pre-wrap;
+  margin: 1rem 0;
+  line-height: 1.5;
+}
+
+.placeholder {
+  background: var(--secondary);
+  color: var(--dark);
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.answer {
+  background: var(--success);
+  color: white;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+}
+
+.options-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.code-option {
+  padding: 0.5rem 1rem;
+  background: var(--light);
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.code-option:hover:not(:disabled) {
+  background: var(--primary);
+  color: white;
+}
+
+.code-option code {
+  font-family: 'Courier New', monospace;
+}
+
+/* Feedback Messages */
+.feedback {
+  text-align: center;
+  margin: 1rem 0;
+  min-height: 2rem;
+}
+
+.feedback .correct {
+  color: var(--success);
+  font-weight: 600;
+}
+
+.feedback .incorrect {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.feedback .hint {
+  color: var(--secondary);
+  font-style: italic;
+}
+
+/* Progress Bar */
+.progress-bar {
+  height: 8px;
+  background: var(--light);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transition: width 0.3s;
+}
+
+/* Dashboard */
+.dashboard {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.metric {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.metric .label {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.metric .value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+/* Buttons */
+.game-btn,
+button[id*="Btn"] {
+  padding: 0.75rem 1.5rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s;
+  margin: 0.5rem;
+}
+
+.game-btn:hover,
+button[id*="Btn"]:hover {
+  background: var(--secondary);
+  transform: translateY(-2px);
+}
+
+.hint-btn {
+  background: var(--secondary);
+}
+
+.skip-btn {
+  background: #95a5a6;
+}
+
+/* Footer */
+.app-footer {
+  background: var(--dark);
+  color: var(--light);
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+/* Game Complete */
+.game-complete {
+  text-align: center;
+  padding: 2rem;
+}
+
+.game-complete h2 {
+  color: var(--success);
+  margin-bottom: 1.5rem;
+}
+
+.final-stats {
+  background: var(--light);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  margin: 1.5rem 0;
+}
+
+.final-stats p {
+  margin: 0.5rem 0;
+  font-size: 1.125rem;
+}
+
+/* Responsive Design */
+@media (min-width: 480px) {
+  .cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .options-grid {
+    max-width: 400px;
+    margin: 1.5rem auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .app-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .dashboard {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .tab {
+    font-size: 1rem;
+  }
+  
+  .code-block {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    padding: 2rem;
+  }
+  
+  .game {
+    padding: 2rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .app-header,
+  .tabs,
+  .app-footer,
+  button {
+    display: none;
+  }
+  
+  .view {
+    display: block !important;
+    page-break-after: always;
+  }
+  
+  body {
+    background: white;
+  }
+}

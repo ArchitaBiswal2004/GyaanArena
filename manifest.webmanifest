@@ -1,0 +1,88 @@
+{
+  "name": "Rural STEM Learning Platform",
+  "short_name": "STEM Learn",
+  "description": "Gamified digital platform for rural students to learn STEM subjects offline",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f9fa",
+  "theme_color": "#0c7a61",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/assets/images/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "games"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Math Game",
+      "short_name": "Math",
+      "description": "Practice math skills",
+      "url": "/#math",
+      "icons": [{ "src": "/assets/images/math-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Science Game",
+      "short_name": "Science",
+      "description": "Learn science concepts",
+      "url": "/#science",
+      "icons": [{ "src": "/assets/images/science-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Coding Game",
+      "short_name": "Coding",
+      "description": "Learn programming basics",
+      "url": "/#coding",
+      "icons": [{ "src": "/assets/images/coding-icon.png", "sizes": "96x96" }]
+    }
+  ]
+}

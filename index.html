@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0c7a61" />
+  <title>Gyaan Arena</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="assets/images/favicon.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1 data-i18n="app.title">Gyaan Arena</h1>
+    <div class="controls">
+      <select id="languageSwitcher" aria-label="Language">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+      </select>
+      <button id="installBtn" hidden data-i18n="actions.install">Install App</button>
+      <button id="printBtn" data-i18n="actions.print">Print</button>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-tab="home" role="tab" aria-selected="true" data-i18n="tabs.home">Home</button>
+    <button class="tab" data-tab="math" role="tab" data-i18n="tabs.math">Math</button>
+    <button class="tab" data-tab="science" role="tab" data-i18n="tabs.science">Science</button>
+    <button class="tab" data-tab="coding" role="tab" data-i18n="tabs.coding">Coding</button>
+    <button class="tab" data-tab="teacher" role="tab" data-i18n="tabs.teacher">Teacher</button>
+  </nav>
+
+  <main>
+    <section id="home" class="view active" role="tabpanel">
+      <h2 data-i18n="home.welcome">Welcome!</h2>
+      <p data-i18n="home.intro">Learn STEM with fun games. Works offline and in your language.</p>
+      <div class="cards">
+        <a class="card" data-open="math" href="#" data-i18n="home.card_math">Try a Math Game →</a>
+        <a class="card" data-open="science" href="#" data-i18n="home.card_science">Explore Science →</a>
+        <a class="card" data-open="coding" href="#" data-i18n="home.card_coding">Start Coding Basics →</a>
+      </div>
+    </section>
+
+    <section id="math" class="view" role="tabpanel" aria-labelledby="Math">
+      <h2 data-i18n="math.title">Math: Quick Quiz</h2>
+      <div id="math-game" class="game"></div>
+    </section>
+
+    <section id="science" class="view" role="tabpanel" aria-labelledby="Science">
+      <h2 data-i18n="science.title">Science: Matching</h2>
+      <div id="science-game" class="game"></div>
+    </section>
+
+    <section id="coding" class="view" role="tabpanel" aria-labelledby="Coding">
+      <h2 data-i18n="coding.title">Coding: Logic Puzzle</h2>
+      <div id="coding-game" class="game"></div>
+    </section>
+
+    <section id="teacher" class="view" role="tabpanel" aria-labelledby="Teacher">
+      <h2 data-i18n="teacher.title">Teacher Dashboard</h2>
+      <div id="dashboard" class="dashboard">
+        <div class="metric">
+          <div class="label" data-i18n="dashboard.engagement">Engagement</div>
+          <div class="value" id="engagementValue">0%</div>
+        </div>
+        <div class="metric">
+          <div class="label" data-i18n="dashboard.average_score">Average Score</div>
+          <div class="value" id="avgScoreValue">0</div>
+        </div>
+        <div class="metric">
+          <div class="label" data-i18n="dashboard.sessions">Sessions</div>
+          <div class="value" id="sessionsValue">0</div>
+        </div>
+      </div>
+      <button id="exportDataBtn" data-i18n="dashboard.export">Export Progress (CSV)</button>
+      <button id="resetDataBtn" data-i18n="dashboard.reset">Reset Data</button>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>© <span id="year"></span> Gyaan Arena</small>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/games/math-quiz.js"></script>
+  <script src="js/games/science-match.js"></script>
+  <script src="js/games/coding-logic.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
