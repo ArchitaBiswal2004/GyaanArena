@@ -5,6 +5,7 @@
   let currentTab = 'home';
   let deferredPrompt = null;
   
+  
   // Initialize app
   function init() {
     registerServiceWorker();
@@ -69,6 +70,21 @@
         break;
       case 'teacher':
         if (window.updateDashboard) window.updateDashboard();
+        break;
+      case 'leaderboard':
+        if (window.socialFeatures) {
+          const activeFilter = document.querySelector('.leaderboard-filters .filter-btn.active');
+          const filter = activeFilter ? activeFilter.dataset.filter : 'overall';
+          window.socialFeatures.displayLeaderboard(filter);
+        }
+        break;
+      case 'profile':
+        if (window.socialFeatures) {
+          window.socialFeatures.updateProfileDisplay();
+        }
+        if (window.achievements) {
+          window.achievements.render();
+        }
         break;
     }
   }

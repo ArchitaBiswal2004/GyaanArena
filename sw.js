@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rural-stem-v1';
+const CACHE_NAME = 'gyaan-arena-v1';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -6,12 +6,19 @@ const urlsToCache = [
   '/js/app.js',
   '/js/i18n.js',
   '/js/progress.js',
+  '/js/social.js',
+  '/js/achievements.js',
   '/js/games/math-quiz.js',
+  '/js/games/math-advanced.js',
   '/js/games/science-match.js',
+  '/js/games/science-advanced.js',
   '/js/games/coding-logic.js',
+  '/js/games/coding-advanced.js',
   '/locales/en.json',
   '/locales/hi.json',
-  '/manifest.webmanifest'
+  '/locales/mr.json',
+  '/manifest.webmanifest',
+  '/.gitignore'
 ];
 
 // Install service worker and cache resources

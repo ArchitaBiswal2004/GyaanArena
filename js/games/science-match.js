@@ -1,11 +1,39 @@
-// Science Matching Game Module
+// Science Matching Game Module - Enhanced with Periodic Table
 (function() {
   'use strict';
+  
+  // Original matching data for elements game
+  const elementData = [
+    { term: 'H', match: 'Hydrogen' },
+    { term: 'He', match: 'Helium' },
+    { term: 'Li', match: 'Lithium' },
+    { term: 'C', match: 'Carbon' },
+    { term: 'N', match: 'Nitrogen' },
+    { term: 'O', match: 'Oxygen' },
+    { term: 'Na', match: 'Sodium' },
+    { term: 'Mg', match: 'Magnesium' },
+    { term: 'Al', match: 'Aluminum' },
+    { term: 'Si', match: 'Silicon' },
+    { term: 'Cl', match: 'Chlorine' },
+    { term: 'K', match: 'Potassium' },
+    { term: 'Ca', match: 'Calcium' },
+    { term: 'Fe', match: 'Iron' },
+    { term: 'Cu', match: 'Copper' },
+    { term: 'Zn', match: 'Zinc' },
+    { term: 'Ag', match: 'Silver' },
+    { term: 'Au', match: 'Gold' },
+    { term: 'Hg', match: 'Mercury' },
+    { term: 'Pb', match: 'Lead' }
+  ];
   
   const scienceData = [
     { term: 'H₂O', match: 'Water' },
     { term: 'CO₂', match: 'Carbon Dioxide' },
-    { term: 'O₂', match: 'Oxygen' },
+    { term: 'O₂', match: 'Oxygen Gas' },
+    { term: 'NaCl', match: 'Salt' },
+    { term: 'H₂SO₄', match: 'Sulfuric Acid' },
+    { term: 'NH₃', match: 'Ammonia' },
+    { term: 'CH₄', match: 'Methane' },
     { term: 'Photosynthesis', match: 'Plants make food' },
     { term: 'Gravity', match: 'Pulls objects down' },
     { term: 'Evaporation', match: 'Liquid to gas' },
@@ -22,9 +50,11 @@
   let matchedPairs = 0;
   let attempts = 0;
   let startTime = null;
+  let currentGameMode = 'elements'; // Default to periodic table
   
   function getRandomPairs(count = 6) {
-    const shuffled = [...scienceData].sort(() => Math.random() - 0.5);
+    const dataSource = currentGameMode === 'elements' ? elementData : scienceData;
+    const shuffled = [...dataSource].sort(() => Math.random() - 0.5);
     return shuffled.slice(0, count);
   }
   
@@ -37,9 +67,14 @@
     return cards.sort(() => Math.random() - 0.5);
   }
   
-  function renderGame() {
+  function renderGame(gameMode) {
     const gameContainer = document.getElementById('science-game');
     if (!gameContainer) return;
+    
+    // Set game mode if provided
+    if (gameMode) {
+      currentGameMode = gameMode;
+    }
     
     // Reset game state
     currentPairs = getRandomPairs();
@@ -49,7 +84,12 @@
     attempts = 0;
     startTime = Date.now();
     
+    const gameTitle = currentGameMode === 'elements' ? 'Periodic Table Match' : 'Science Concepts Match';
+    
     gameContainer.innerHTML = `
+      <div class="game-header">
+        <h4>${gameTitle}</h4>
+      </div>
       <div class="game-stats">
         <span>Matched: ${matchedPairs}/${currentPairs.length}</span>
         <span>Attempts: ${attempts}</span>
@@ -81,8 +121,29 @@
     
     const newBtn = document.getElementById('science-new-btn');
     if (newBtn) {
-      newBtn.addEventListener('click', renderGame);
+      newBtn.addEventListener('click', () => renderGame(currentGameMode));
     }
+    
+    // Handle game selector buttons if they exist
+    document.querySelectorAll('#science .game-selector .game-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const gameType = e.target.dataset.game;
+        document.querySelectorAll('#science .game-selector .game-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        
+        // Map game types to our modes
+        if (gameType === 'elements') {
+          renderGame('elements');
+        } else if (gameType === 'physics' || gameType === 'chemistry' || gameType === 'biology') {
+          // Use science-advanced for these
+          if (window.initScienceAdvanced) {
+            window.initScienceAdvanced(gameType);
+          }
+        } else {
+          renderGame('concepts');
+        }
+      });
+    });
   }
   
   function handleCardClick(e) {
@@ -169,5 +230,29 @@
   }
   
   // Initialize when tab is shown
-  window.initScienceGame = renderGame;
+  window.initScienceGame = function() {
+    const activeBtn = document.querySelector('#science .game-selector .game-btn.active');
+    if (activeBtn) {
+      const gameType = activeBtn.dataset.game;
+      if (gameType === 'elements') {
+        renderGame('elements');
+      } else if (gameType === 'physics' || gameType === 'chemistry' || gameType === 'biology') {
+        if (window.initScienceAdvanced) {
+          window.initScienceAdvanced(gameType);
+        }
+      } else {
+        renderGame('concepts');
+      }
+    } else {
+      renderGame('elements'); // Default to periodic table
+    }
+  };
+  
+  window.initScienceAdvanced = function(gameType) {
+    // Delegate to science-advanced.js if it exists
+    const advancedScript = document.querySelector('script[src*="science-advanced"]');
+    if (advancedScript && window.renderScienceAdvanced) {
+      window.renderScienceAdvanced(gameType);
+    }
+  };
 })();
