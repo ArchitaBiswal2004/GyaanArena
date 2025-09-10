@@ -1,14 +1,24 @@
 /* Rural STEM Learning Platform - Mobile First CSS */
 :root {
-  --primary: #0c7a61;
-  --secondary: #f39c12;
-  --success: #27ae60;
-  --danger: #e74c3c;
-  --dark: #2c3e50;
-  --light: #ecf0f1;
-  --bg: #f8f9fa;
-  --shadow: 0 2px 4px rgba(0,0,0,0.1);
-  --radius: 8px;
+  --primary: #4169E1;  /* Royal Blue */
+  --primary-dark: #2E4BC7;  /* Darker Royal Blue */
+  --primary-light: #6B8CFF;  /* Lighter Royal Blue */
+  --lavender: #E6E6FA;  /* Lavender */
+  --lavender-dark: #D8BFD8;  /* Thistle */
+  --lavender-light: #F5F0FF;  /* Very Light Lavender */
+  --secondary: #9370DB;  /* Medium Purple */
+  --accent: #7B68EE;  /* Medium Slate Blue */
+  --success: #48D1CC;  /* Medium Turquoise */
+  --danger: #FF69B4;  /* Hot Pink */
+  --warning: #FFB347;  /* Peach */
+  --dark: #2F2B3D;  /* Dark Purple-Grey */
+  --light: #F8F6FF;  /* Very Light Lavender */
+  --bg: #FAF8FF;  /* Lavender White Background */
+  --shadow: 0 2px 8px rgba(65, 105, 225, 0.15);
+  --shadow-hover: 0 4px 16px rgba(65, 105, 225, 0.25);
+  --radius: 12px;
+  --gradient: linear-gradient(135deg, #4169E1 0%, #9370DB 100%);
+  --gradient-light: linear-gradient(135deg, #E6E6FA 0%, #F5F0FF 100%);
 }
 
 * {
@@ -29,10 +39,28 @@ body {
 
 /* Header */
 .app-header {
-  background: var(--primary);
+  background: var(--gradient);
   color: white;
   padding: 1rem;
   box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation: shimmer 15s infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
 }
 
 .app-header h1 {
@@ -120,21 +148,40 @@ main {
 }
 
 .card {
-  background: white;
+  background: linear-gradient(135deg, white 0%, var(--lavender-light) 100%);
   padding: 1.5rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   text-decoration: none;
   color: var(--dark);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.3s ease;
   display: block;
   text-align: center;
   font-weight: 500;
+  border: 1px solid var(--lavender);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(65, 105, 225, 0.1), transparent);
+  transition: left 0.5s;
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary-light);
+}
+
+.card:hover::before {
+  left: 100%;
 }
 
 /* Game Containers */
@@ -514,4 +561,523 @@ button[id*="Btn"]:hover {
   body {
     background: white;
   }
+}
+
+/* === NEW GAME STYLES WITH ROYAL BLUE & LAVENDER THEME === */
+
+/* Game Selector Buttons */
+.game-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--gradient-light);
+  border-radius: var(--radius);
+}
+
+.game-btn {
+  flex: 1;
+  min-width: 140px;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(65, 105, 225, 0.2);
+}
+
+.game-btn:hover {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.game-btn:active {
+  transform: translateY(0);
+}
+
+/* Memory Matching Game Styles */
+.tile-match-game {
+  padding: 1.5rem;
+  background: white;
+  border-radius: var(--radius);
+}
+
+.tile-game-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.tile-game-header h3 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.difficulty-selector {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.diff-btn {
+  padding: 0.5rem 1rem;
+  background: var(--lavender);
+  color: var(--dark);
+  border: 2px solid var(--lavender-dark);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.diff-btn.active,
+.diff-btn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary-dark);
+}
+
+.tile-game-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  background: var(--lavender-light);
+  border-radius: var(--radius);
+  margin-top: 1rem;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 0.75rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.tile-card {
+  aspect-ratio: 1;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.tile-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.tile-card.flipped .tile-inner {
+  transform: rotateY(180deg);
+}
+
+.tile-front,
+.tile-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tile-front {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: white;
+}
+
+.tile-back {
+  background: linear-gradient(135deg, var(--lavender) 0%, white 100%);
+  color: var(--primary-dark);
+  transform: rotateY(180deg);
+  border: 2px solid var(--primary-light);
+}
+
+.tile-card.matched .tile-inner {
+  animation: matchPulse 0.6s ease;
+}
+
+.tile-card.matched .tile-back {
+  background: linear-gradient(135deg, var(--success) 0%, #7FFFD4 100%);
+  border-color: var(--success);
+}
+
+@keyframes matchPulse {
+  0%, 100% { transform: rotateY(180deg) scale(1); }
+  50% { transform: rotateY(180deg) scale(1.1); }
+}
+
+.tile-card.hint-highlight .tile-inner {
+  animation: hintGlow 1.5s ease;
+}
+
+@keyframes hintGlow {
+  0%, 100% { box-shadow: 0 0 0 rgba(147, 112, 219, 0); }
+  50% { box-shadow: 0 0 20px rgba(147, 112, 219, 0.8); }
+}
+
+/* Word Games Styles */
+.word-search-game,
+.vocabulary-game,
+.scramble-game {
+  padding: 1.5rem;
+  background: white;
+  border-radius: var(--radius);
+}
+
+.word-game-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.game-type-selector {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.type-btn {
+  padding: 0.5rem 1rem;
+  background: var(--lavender-light);
+  color: var(--dark);
+  border: 2px solid var(--lavender);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.type-btn.active,
+.type-btn:hover {
+  background: var(--secondary);
+  color: white;
+  border-color: var(--secondary);
+}
+
+.word-grid {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  gap: 2px;
+  max-width: 500px;
+  margin: 1.5rem auto;
+  padding: 1rem;
+  background: var(--lavender-light);
+  border-radius: var(--radius);
+}
+
+.grid-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1px solid var(--lavender);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.grid-cell:hover {
+  background: var(--lavender);
+}
+
+.grid-cell.selecting {
+  background: var(--primary-light);
+  color: white;
+}
+
+.grid-cell.found {
+  background: var(--success);
+  color: white;
+}
+
+.word-list {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--lavender-light);
+  border-radius: var(--radius);
+}
+
+.words-to-find {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.word-item {
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 2px solid var(--lavender);
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.word-item.found {
+  background: var(--success);
+  color: white;
+  border-color: var(--success);
+  text-decoration: line-through;
+}
+
+/* Logic Puzzle Styles */
+.logic-puzzle-game,
+.sudoku-game,
+.logic-question-game,
+.classification-game,
+.debugging-game {
+  padding: 1.5rem;
+  background: white;
+  border-radius: var(--radius);
+}
+
+.puzzle-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.puzzle-type-selector {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.ptype-btn {
+  padding: 0.5rem 1rem;
+  background: var(--lavender-light);
+  color: var(--dark);
+  border: 2px solid var(--lavender);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.ptype-btn.active,
+.ptype-btn:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.pattern-sequence {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.sequence-item {
+  padding: 1.5rem;
+  min-width: 60px;
+  background: linear-gradient(135deg, var(--lavender) 0%, white 100%);
+  border: 2px solid var(--primary-light);
+  border-radius: var(--radius);
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--primary-dark);
+}
+
+.sequence-item.unknown {
+  background: linear-gradient(135deg, var(--warning) 0%, #FFE4B5 100%);
+  border-color: var(--warning);
+  color: var(--dark);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.sequence-arrow {
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+/* Sudoku Grid */
+.sudoku-grid {
+  display: inline-block;
+  margin: 1.5rem auto;
+  padding: 4px;
+  background: var(--primary);
+  border-radius: var(--radius);
+}
+
+.sudoku-row {
+  display: flex;
+}
+
+.sudoku-cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--lavender);
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background: white;
+  color: var(--primary-dark);
+}
+
+.sudoku-cell.fixed {
+  background: var(--lavender-light);
+  color: var(--dark);
+}
+
+.sudoku-cell.hint {
+  background: var(--success);
+  color: white;
+}
+
+.sudoku-cell.error {
+  background: var(--danger);
+  color: white;
+}
+
+/* Game Controls */
+.tile-game-controls,
+.word-game-controls,
+.puzzle-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.game-control-btn {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(65, 105, 225, 0.2);
+}
+
+.game-control-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Feedback Messages */
+.tile-feedback,
+.vocab-feedback,
+.scramble-feedback,
+.pattern-feedback,
+.sudoku-feedback,
+.logic-feedback,
+.class-feedback,
+.debug-feedback {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  text-align: center;
+  font-weight: 600;
+  display: none;
+}
+
+.tile-feedback.success,
+.vocab-feedback.success,
+.scramble-feedback.success,
+.pattern-feedback.success,
+.sudoku-feedback.success,
+.logic-feedback.success,
+.class-feedback.success,
+.debug-feedback.success {
+  background: linear-gradient(135deg, var(--success) 0%, #7FFFD4 100%);
+  color: white;
+  display: block;
+}
+
+.tile-feedback.error,
+.vocab-feedback.error,
+.scramble-feedback.error,
+.pattern-feedback.error,
+.sudoku-feedback.error,
+.logic-feedback.error,
+.class-feedback.error,
+.debug-feedback.error {
+  background: linear-gradient(135deg, var(--danger) 0%, #FFB6C1 100%);
+  color: white;
+  display: block;
+}
+
+.tile-feedback.warning,
+.vocab-feedback.warning {
+  background: linear-gradient(135deg, var(--warning) 0%, #FFE4B5 100%);
+  color: var(--dark);
+  display: block;
+}
+
+.tile-feedback.info {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--lavender) 100%);
+  color: var(--dark);
+  display: block;
+}
+
+/* Game Complete Overlay */
+.game-complete-overlay,
+.puzzle-complete {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 40px rgba(65, 105, 225, 0.3);
+  text-align: center;
+  z-index: 1000;
+  max-width: 400px;
+  width: 90%;
+}
+
+.complete-message h2 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.complete-message button {
+  margin-top: 1rem;
+  padding: 0.75rem 2rem;
+  background: var(--gradient);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.complete-message button:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-hover);
 }

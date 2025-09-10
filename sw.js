@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gyaan-arena-v1';
+const CACHE_NAME = 'gyaan-arena-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -14,11 +14,15 @@ const urlsToCache = [
   '/js/games/science-advanced.js',
   '/js/games/coding-logic.js',
   '/js/games/coding-advanced.js',
+  '/js/games/tile-match.js',
+  '/js/games/word-games.js',
+  '/js/games/logic-puzzles.js',
   '/locales/en.json',
   '/locales/hi.json',
   '/locales/mr.json',
   '/manifest.webmanifest',
-  '/.gitignore'
+  '/.gitignore',
+  '/.nojekyll'
 ];
 
 // Install service worker and cache resources

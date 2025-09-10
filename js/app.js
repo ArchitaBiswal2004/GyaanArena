@@ -57,17 +57,20 @@
     
     currentTab = tabName;
     
-    // Initialize games when their tabs are shown
-    switch(tabName) {
-      case 'math':
-        if (window.initMathGame) window.initMathGame();
-        break;
-      case 'science':
-        if (window.initScienceGame) window.initScienceGame();
-        break;
-      case 'coding':
-        if (window.initCodingGame) window.initCodingGame();
-        break;
+  // Initialize games when their tabs are shown
+  switch(tabName) {
+    case 'math':
+      if (window.initMathGame) window.initMathGame();
+      attachGameButtonListeners('math');
+      break;
+    case 'science':
+      if (window.initScienceGame) window.initScienceGame();
+      attachGameButtonListeners('science');
+      break;
+    case 'coding':
+      if (window.initCodingGame) window.initCodingGame();
+      attachGameButtonListeners('coding');
+      break;
       case 'teacher':
         if (window.updateDashboard) window.updateDashboard();
         break;
@@ -168,6 +171,79 @@
     if (yearElement) {
       yearElement.textContent = new Date().getFullYear();
     }
+  }
+  
+  // Attach game button listeners for new games
+  function attachGameButtonListeners(subject) {
+    const gameButtons = document.querySelectorAll(`#${subject} .game-btn`);
+    
+    gameButtons.forEach(btn => {
+      // Remove existing listeners to avoid duplicates
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+      
+      newBtn.addEventListener('click', (e) => {
+        const game = e.target.dataset.game;
+        const gameContainer = document.getElementById(`${subject}-game`);
+        
+        // Clear previous game
+        if (gameContainer) {
+          gameContainer.innerHTML = '';
+        }
+        
+        // Initialize the selected game
+        switch(game) {
+          case 'quadratic':
+          case 'fractions':
+          case 'geometry':
+          case 'algebra':
+            if (subject === 'math' && window.initMathGame) {
+              window.initMathGame(game);
+            }
+            break;
+            
+          case 'physics':
+          case 'chemistry':
+          case 'biology':
+          case 'elements':
+            if (subject === 'science' && window.initScienceGame) {
+              window.initScienceGame(game);
+            }
+            break;
+            
+          case 'algorithms':
+          case 'debugging':
+          case 'datastructures':
+          case 'patterns':
+            if (subject === 'coding' && window.initCodingGame) {
+              window.initCodingGame(game);
+            }
+            break;
+            
+          case 'tilematch':
+            if (window.initTileMatch) {
+              window.initTileMatch(subject, 'medium');
+            }
+            break;
+            
+          case 'wordgame':
+            if (window.initWordGame) {
+              window.initWordGame(subject, 'wordSearch');
+            }
+            break;
+            
+          case 'logicpuzzle':
+            if (window.initLogicPuzzle) {
+              window.initLogicPuzzle(subject, 'patterns');
+            }
+            break;
+        }
+        
+        // Highlight active game button
+        gameButtons.forEach(b => b.classList.remove('active'));
+        newBtn.classList.add('active');
+      });
+    });
   }
   
   // Handle online/offline status
