@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gyaan-arena-v2';
+const CACHE_NAME = 'gyaan-arena-v3';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -20,6 +20,7 @@ const urlsToCache = [
   '/locales/en.json',
   '/locales/hi.json',
   '/locales/mr.json',
+  '/locales/od.json',
   '/manifest.webmanifest',
   '/.gitignore',
   '/.nojekyll'

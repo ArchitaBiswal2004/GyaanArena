@@ -15,8 +15,10 @@
     setupPrintButton();
     updateYear();
     
-    // Initialize first view
-    showTab('home');
+    // Gate behind login
+    setupLogin();
+    // Always require login on each visit
+    showLogin();
   }
   
   // Register service worker for offline functionality
@@ -90,6 +92,54 @@
         }
         break;
     }
+  }
+
+  // Show only login view
+  function showLogin() {
+    document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+    const loginView = document.getElementById('login');
+    if (loginView) loginView.classList.add('active');
+    // Hide header/nav during login for focus
+    const header = document.querySelector('header.app-header');
+    const nav = document.querySelector('nav.tabs');
+    if (header) header.style.display = 'none';
+    if (nav) nav.style.display = 'none';
+  }
+
+  // Show main app starting at home
+  function showMain() {
+    const header = document.querySelector('header.app-header');
+    const nav = document.querySelector('nav.tabs');
+    if (header) header.style.display = '';
+    if (nav) nav.style.display = '';
+    showTab('home');
+  }
+
+  // Setup login handling
+  function setupLogin() {
+    const form = document.getElementById('loginForm');
+    if (!form) return;
+    const studentIdInput = document.getElementById('studentId');
+    const collegeIdInput = document.getElementById('collegeId');
+    const errorEl = document.getElementById('loginError');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const studentId = studentIdInput ? studentIdInput.value.trim() : '';
+      const collegeId = collegeIdInput ? collegeIdInput.value.trim() : '';
+
+    const valid = studentId.length > 0 && collegeId.length >= 6;
+      if (!valid) {
+        if (errorEl) errorEl.style.display = 'block';
+        return;
+      }
+
+      if (errorEl) errorEl.style.display = 'none';
+      // Persist simple session
+      localStorage.setItem('session.studentId', studentId);
+      localStorage.setItem('session.collegeId', collegeId);
+      showMain();
+    });
   }
   
   // Attach navigation listeners

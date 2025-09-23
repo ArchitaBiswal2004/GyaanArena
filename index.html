@@ -1,236 +1,144 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0c7a61" />
-  <meta name="description" content="Gyaan Arena - Interactive STEM learning platform with gamified education, multilingual support, and offline capabilities" />
-  <meta name="keywords" content="STEM education, learning games, math, science, coding, educational platform, Gyaan Arena" />
-  <meta property="og:title" content="Gyaan Arena - STEM Learning Platform" />
-  <meta property="og:description" content="Interactive STEM education with games, challenges, and social learning" />
-  <meta property="og:type" content="website" />
-  <title>Gyaan Arena - Interactive STEM Learning Platform</title>
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="icon" href="assets/images/favicon.png" />
-  <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
-  <!-- Skip to main content for accessibility -->
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-  
-  <header class="app-header" role="banner">
-    <h1 data-i18n="app.title">Gyaan Arena</h1>
-    <div class="controls">
-  <select id="languageSwitcher" aria-label="Language">
-        <option value="en">English</option>
-        <option value="hi">हिन्दी</option>
-        <option value="mr">मराठी</option>
-      </select>
-      <button id="installBtn" hidden data-i18n="actions.install">Install App</button>
-      <button id="printBtn" data-i18n="actions.print">Print</button>
-    </div>
-  </header>
-
-  <nav class="tabs" role="tablist" aria-label="Main navigation">
-    <button class="tab active" data-tab="home" role="tab" aria-selected="true" data-i18n="tabs.home">Home</button>
-    <button class="tab" data-tab="math" role="tab" data-i18n="tabs.math">Math</button>
-    <button class="tab" data-tab="science" role="tab" data-i18n="tabs.science">Science</button>
-    <button class="tab" data-tab="coding" role="tab" data-i18n="tabs.coding">Coding</button>
-    <button class="tab" data-tab="leaderboard" role="tab" data-i18n="tabs.leaderboard">Leaderboard</button>
-    <button class="tab" data-tab="profile" role="tab" data-i18n="tabs.profile">Profile</button>
-    <button class="tab" data-tab="teacher" role="tab" data-i18n="tabs.teacher">Teacher</button>
-  </nav>
-
-  <main id="main-content" aria-live="polite">
-    <section id="home" class="view active" role="tabpanel">
-      <h2 data-i18n="home.welcome">Welcome to Gyaan Arena!</h2>
-      <p data-i18n="home.intro">Master STEM subjects through interactive games and challenges. Learn, compete, and grow!</p>
-      
-      <!-- User Stats Summary -->
-      <div class="user-stats-summary" id="userStatsSummary" aria-label="Your progress">
-        <div class="stat-item">
-          <span class="stat-label" data-i18n="stats.streak">Daily Streak</span>
-          <span class="stat-value" id="streakValue">0</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label" data-i18n="stats.points">Total Points</span>
-          <span class="stat-value" id="totalPointsValue">0</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label" data-i18n="stats.rank">Your Rank</span>
-          <span class="stat-value" id="rankValue">-</span>
-        </div>
-      </div>
-      
-      <div class="cards">
-        <a class="card" data-open="math" href="#" aria-label="Open math games">
-          <h3 data-i18n="home.card_math_title">Mathematics Arena</h3>
-          <p data-i18n="home.card_math_desc">Quadratics, Fractions, Geometry & more →</p>
-        </a>
-        <a class="card" data-open="science" href="#" aria-label="Open science games">
-          <h3 data-i18n="home.card_science_title">Science Laboratory</h3>
-          <p data-i18n="home.card_science_desc">Physics, Chemistry, Biology challenges →</p>
-        </a>
-        <a class="card" data-open="coding" href="#" aria-label="Open coding challenges">
-          <h3 data-i18n="home.card_coding_title">Code Academy</h3>
-          <p data-i18n="home.card_coding_desc">Algorithms, Logic, Problem Solving →</p>
-        </a>
-      </div>
-    </section>
-
-    <section id="math" class="view" role="tabpanel" aria-labelledby="Math">
-      <h2 data-i18n="math.title">Mathematics Arena</h2>
-      <div class="game-selector">
-        <button class="game-btn" data-game="quadratic" data-i18n="math.quadratic">Quadratic Equations</button>
-        <button class="game-btn" data-game="fractions" data-i18n="math.fractions">Fractions Master</button>
-        <button class="game-btn" data-game="geometry" data-i18n="math.geometry">Geometry Challenge</button>
-        <button class="game-btn" data-game="algebra" data-i18n="math.algebra">Algebra Puzzles</button>
-        <button class="game-btn" data-game="tilematch" data-i18n="math.tilematch">Memory Match</button>
-        <button class="game-btn" data-game="wordgame" data-i18n="math.wordgame">Word Games</button>
-        <button class="game-btn" data-game="logicpuzzle" data-i18n="math.logicpuzzle">Logic Puzzles</button>
-      </div>
-      <div id="math-game" class="game" aria-live="polite"></div>
-    </section>
-
-    <section id="science" class="view" role="tabpanel" aria-labelledby="Science">
-      <h2 data-i18n="science.title">Science Laboratory</h2>
-      <div class="game-selector">
-        <button class="game-btn" data-game="physics" data-i18n="science.physics">Physics Simulations</button>
-        <button class="game-btn" data-game="chemistry" data-i18n="science.chemistry">Chemistry Lab</button>
-        <button class="game-btn" data-game="biology" data-i18n="science.biology">Biology Quiz</button>
-        <button class="game-btn" data-game="elements" data-i18n="science.elements">Periodic Table</button>
-        <button class="game-btn" data-game="tilematch" data-i18n="science.tilematch">Memory Match</button>
-        <button class="game-btn" data-game="wordgame" data-i18n="science.wordgame">Word Games</button>
-        <button class="game-btn" data-game="logicpuzzle" data-i18n="science.logicpuzzle">Logic Puzzles</button>
-      </div>
-      <div id="science-game" class="game" aria-live="polite"></div>
-    </section>
-
-    <section id="coding" class="view" role="tabpanel" aria-labelledby="Coding">
-      <h2 data-i18n="coding.title">Code Academy</h2>
-      <div class="game-selector">
-        <button class="game-btn" data-game="algorithms" data-i18n="coding.algorithms">Algorithm Challenge</button>
-        <button class="game-btn" data-game="debugging" data-i18n="coding.debugging">Debug the Code</button>
-        <button class="game-btn" data-game="datastructures" data-i18n="coding.datastructures">Data Structures</button>
-        <button class="game-btn" data-game="patterns" data-i18n="coding.patterns">Pattern Recognition</button>
-        <button class="game-btn" data-game="tilematch" data-i18n="coding.tilematch">Memory Match</button>
-        <button class="game-btn" data-game="wordgame" data-i18n="coding.wordgame">Word Games</button>
-        <button class="game-btn" data-game="logicpuzzle" data-i18n="coding.logicpuzzle">Logic Puzzles</button>
-      </div>
-      <div id="coding-game" class="game" aria-live="polite"></div>
-    </section>
-
-    <!-- Leaderboard Section -->
-    <section id="leaderboard" class="view" role="tabpanel" aria-labelledby="Leaderboard">
-      <h2 data-i18n="leaderboard.title">Gyaan Arena Leaderboard</h2>
-      <div class="leaderboard-filters">
-        <button class="filter-btn active" data-filter="overall" data-i18n="leaderboard.overall">Overall</button>
-        <button class="filter-btn" data-filter="math" data-i18n="leaderboard.math">Math</button>
-        <button class="filter-btn" data-filter="science" data-i18n="leaderboard.science">Science</button>
-        <button class="filter-btn" data-filter="coding" data-i18n="leaderboard.coding">Coding</button>
-        <button class="filter-btn" data-filter="weekly" data-i18n="leaderboard.weekly">This Week</button>
-      </div>
-      <div id="leaderboard-content" class="leaderboard-list">
-        <!-- Dynamically populated -->
-      </div>
-      <button id="shareProgressBtn" class="share-btn" data-i18n="social.share">Share Your Progress</button>
-    </section>
-
-    <!-- Profile Section -->
-    <section id="profile" class="view" role="tabpanel" aria-labelledby="Profile">
-      <h2 data-i18n="profile.title">Your Profile</h2>
-      <div class="profile-container">
-        <div class="profile-header">
-          <div class="avatar" id="userAvatar" aria-label="User avatar">
-            <span id="avatarInitial">U</span>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0c7a61" />
+    <meta name="description" content="Gyaan Arena - Interactive STEM learning platform with gamified education, multilingual support, and offline capabilities" />
+    <meta name="keywords" content="STEM education, learning games, math, science, coding, educational platform, Gyaan Arena" />
+    <meta property="og:title" content="Gyaan Arena - STEM Learning Platform" />
+    <meta property="og:description" content="Interactive STEM education with games, challenges, and social learning" />
+    <meta property="og:type" content="website" />
+    <title>Gyaan Arena - Interactive STEM Learning Platform</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="assets/images/favicon.png" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body><a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="app-header" role="banner" style="display:none">
+      <h1 data-i18n="app.title">Gyaan Arena</h1>
+      <div class="controls"><select id="languageSwitcher" aria-label="Language">
+          <option value="en">English</option>
+          <option value="hi">हिन्दी</option>
+          <option value="mr">मराठी</option>
+          <option value="od">ଓଡ଼ିଆ</option>
+        </select><button id="installBtn" hidden data-i18n="actions.install">Install App</button><button id="printBtn" data-i18n="actions.print">Print</button></div>
+    </header>
+    <nav class="tabs" role="tablist" aria-label="Main navigation" style="display:none"><button class="tab active" data-tab="home" role="tab" aria-selected="true" data-i18n="tabs.home">Home</button><button class="tab" data-tab="math" role="tab" data-i18n="tabs.math">Math</button><button class="tab" data-tab="science" role="tab" data-i18n="tabs.science">Science</button><button class="tab" data-tab="coding" role="tab" data-i18n="tabs.coding">Coding</button><button class="tab" data-tab="leaderboard" role="tab" data-i18n="tabs.leaderboard">Leaderboard</button><button class="tab" data-tab="profile" role="tab" data-i18n="tabs.profile">Profile</button><button class="tab" data-tab="teacher" role="tab" data-i18n="tabs.teacher">Teacher</button></nav>
+    <main id="main-content" aria-live="polite">
+      <section id="login" class="view active" role="dialog" aria-labelledby="loginTitle" aria-modal="true">
+        <h2 id="loginTitle">Login</h2>
+        <form id="loginForm" novalidate>
+          <div class="form-row">
+            <label for="studentId">Student ID</label>
+            <input type="password" id="studentId" name="studentId" required placeholder="Enter Student ID" autofocus>
           </div>
-          <div class="profile-info">
-            <input type="text" id="username" placeholder="Enter your name" data-i18n-placeholder="profile.username" aria-label="Username">
-            <p class="user-level" data-i18n="profile.level">Level: <span id="userLevel">1</span></p>
+          <div class="form-row">
+            <label for="collegeId">College ID (6+ chars)</label>
+            <input type="password" id="collegeId" name="collegeId" required placeholder="Enter College ID (6+ chars)">
           </div>
+          <button type="submit" id="loginSubmit">Login</button>
+          <p id="loginError" role="alert" style="color:#b00020;display:none;">Please enter Student ID and 6-character College ID.</p>
+        </form>
+      </section>
+      <section id="home" class="view" role="tabpanel">
+        <h2 data-i18n="home.welcome">Welcome to Gyaan Arena!</h2>
+        <p data-i18n="home.intro">Master STEM subjects through interactive games and challenges. Learn, compete, and grow!</p>
+        <div class="user-stats-summary" id="userStatsSummary" aria-label="Your progress">
+          <div class="stat-item"><span class="stat-label" data-i18n="stats.streak">Daily Streak</span><span class="stat-value" id="streakValue">0</span></div>
+          <div class="stat-item"><span class="stat-label" data-i18n="stats.points">Total Points</span><span class="stat-value" id="totalPointsValue">0</span></div>
+          <div class="stat-item"><span class="stat-label" data-i18n="stats.rank">Your Rank</span><span class="stat-value" id="rankValue">-</span></div>
         </div>
-        
-        <div class="achievements-section">
-          <h3 data-i18n="profile.achievements">Achievements</h3>
-          <div class="achievements-grid" id="achievementsGrid">
-            <!-- Dynamically populated -->
-          </div>
-        </div>
-        
-        <div class="stats-section">
-          <h3 data-i18n="profile.stats">Your Statistics</h3>
-          <div class="stats-grid">
-            <div class="stat-card">
-              <span class="stat-label" data-i18n="stats.total_games">Games Played</span>
-              <span class="stat-value" id="gamesPlayedValue">0</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-label" data-i18n="stats.best_subject">Best Subject</span>
-              <span class="stat-value" id="bestSubjectValue">-</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-label" data-i18n="stats.accuracy">Accuracy</span>
-              <span class="stat-value" id="accuracyValue">0%</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-label" data-i18n="stats.time_spent">Time Spent</span>
-              <span class="stat-value" id="timeSpentValue">0h</span>
+        <div class="cards"><a class="card" data-open="math" href="#" aria-label="Open math games">
+            <h3 data-i18n="home.card_math_title">Mathematics Arena</h3>
+            <p data-i18n="home.card_math_desc">Quadratics, Fractions, Geometry & more →</p>
+          </a><a class="card" data-open="science" href="#" aria-label="Open science games">
+            <h3 data-i18n="home.card_science_title">Science Laboratory</h3>
+            <p data-i18n="home.card_science_desc">Physics, Chemistry, Biology challenges →</p>
+          </a><a class="card" data-open="coding" href="#" aria-label="Open coding challenges">
+            <h3 data-i18n="home.card_coding_title">Code Academy</h3>
+            <p data-i18n="home.card_coding_desc">Algorithms, Logic, Problem Solving →</p>
+          </a></div>
+      </section>
+      <section id="math" class="view" role="tabpanel" aria-labelledby="Math">
+        <h2 data-i18n="math.title">Mathematics Arena</h2>
+        <div class="game-selector"><button class="game-btn" data-game="quadratic" data-i18n="math.quadratic">Quadratic Equations</button><button class="game-btn" data-game="fractions" data-i18n="math.fractions">Fractions Master</button><button class="game-btn" data-game="geometry" data-i18n="math.geometry">Geometry Challenge</button><button class="game-btn" data-game="algebra" data-i18n="math.algebra">Algebra Puzzles</button><button class="game-btn" data-game="tilematch" data-i18n="math.tilematch">Memory Match</button><button class="game-btn" data-game="wordgame" data-i18n="math.wordgame">Word Games</button><button class="game-btn" data-game="logicpuzzle" data-i18n="math.logicpuzzle">Logic Puzzles</button></div>
+        <div id="math-game" class="game" aria-live="polite"></div>
+      </section>
+      <section id="science" class="view" role="tabpanel" aria-labelledby="Science">
+        <h2 data-i18n="science.title">Science Laboratory</h2>
+        <div class="game-selector"><button class="game-btn" data-game="physics" data-i18n="science.physics">Physics Simulations</button><button class="game-btn" data-game="chemistry" data-i18n="science.chemistry">Chemistry Lab</button><button class="game-btn" data-game="biology" data-i18n="science.biology">Biology Quiz</button><button class="game-btn" data-game="elements" data-i18n="science.elements">Periodic Table</button><button class="game-btn" data-game="tilematch" data-i18n="science.tilematch">Memory Match</button><button class="game-btn" data-game="wordgame" data-i18n="science.wordgame">Word Games</button><button class="game-btn" data-game="logicpuzzle" data-i18n="science.logicpuzzle">Logic Puzzles</button></div>
+        <div id="science-game" class="game" aria-live="polite"></div>
+      </section>
+      <section id="coding" class="view" role="tabpanel" aria-labelledby="Coding">
+        <h2 data-i18n="coding.title">Code Academy</h2>
+        <div class="game-selector"><button class="game-btn" data-game="algorithms" data-i18n="coding.algorithms">Algorithm Challenge</button><button class="game-btn" data-game="debugging" data-i18n="coding.debugging">Debug the Code</button><button class="game-btn" data-game="datastructures" data-i18n="coding.datastructures">Data Structures</button><button class="game-btn" data-game="patterns" data-i18n="coding.patterns">Pattern Recognition</button><button class="game-btn" data-game="tilematch" data-i18n="coding.tilematch">Memory Match</button><button class="game-btn" data-game="wordgame" data-i18n="coding.wordgame">Word Games</button><button class="game-btn" data-game="logicpuzzle" data-i18n="coding.logicpuzzle">Logic Puzzles</button></div>
+        <div id="coding-game" class="game" aria-live="polite"></div>
+      </section>
+      <section id="leaderboard" class="view" role="tabpanel" aria-labelledby="Leaderboard">
+        <h2 data-i18n="leaderboard.title">Gyaan Arena Leaderboard</h2>
+        <div class="leaderboard-filters"><button class="filter-btn active" data-filter="overall" data-i18n="leaderboard.overall">Overall</button><button class="filter-btn" data-filter="math" data-i18n="leaderboard.math">Math</button><button class="filter-btn" data-filter="science" data-i18n="leaderboard.science">Science</button><button class="filter-btn" data-filter="coding" data-i18n="leaderboard.coding">Coding</button><button class="filter-btn" data-filter="weekly" data-i18n="leaderboard.weekly">This Week</button></div>
+        <div id="leaderboard-content" class="leaderboard-list"></div><button id="shareProgressBtn" class="share-btn" data-i18n="social.share">Share Your Progress</button>
+      </section>
+      <section id="profile" class="view" role="tabpanel" aria-labelledby="Profile">
+        <h2 data-i18n="profile.title">Your Profile</h2>
+        <div class="profile-container">
+          <div class="profile-header">
+            <div class="avatar" id="userAvatar" aria-label="User avatar"><span id="avatarInitial">U</span></div>
+            <div class="profile-info"><input type="text" id="username" placeholder="Enter your name" data-i18n-placeholder="profile.username" aria-label="Username">
+              <p class="user-level" data-i18n="profile.level">Level: <span id="userLevel">1</span></p>
             </div>
           </div>
+          <div class="achievements-section">
+            <h3 data-i18n="profile.achievements">Achievements</h3>
+            <div class="achievements-grid" id="achievementsGrid"></div>
+          </div>
+          <div class="stats-section">
+            <h3 data-i18n="profile.stats">Your Statistics</h3>
+            <div class="stats-grid">
+              <div class="stat-card"><span class="stat-label" data-i18n="stats.total_games">Games Played</span><span class="stat-value" id="gamesPlayedValue">0</span></div>
+              <div class="stat-card"><span class="stat-label" data-i18n="stats.best_subject">Best Subject</span><span class="stat-value" id="bestSubjectValue">-</span></div>
+              <div class="stat-card"><span class="stat-label" data-i18n="stats.accuracy">Accuracy</span><span class="stat-value" id="accuracyValue">0%</span></div>
+              <div class="stat-card"><span class="stat-label" data-i18n="stats.time_spent">Time Spent</span><span class="stat-value" id="timeSpentValue">0h</span></div>
+            </div>
+          </div>
+          <div class="progress-chart" id="progressChart" aria-label="Progress over time"></div>
         </div>
-        
-        <div class="progress-chart" id="progressChart" aria-label="Progress over time">
-          <!-- Chart will be rendered here -->
-        </div>
-      </div>
-    </section>
-
-    <section id="teacher" class="view" role="tabpanel" aria-labelledby="Teacher">
-      <h2 data-i18n="teacher.title">Teacher Dashboard</h2>
-      <div id="dashboard" class="dashboard">
-        <div class="metric">
-          <div class="label" data-i18n="dashboard.engagement">Engagement</div>
-          <div class="value" id="engagementValue">0%</div>
-        </div>
-        <div class="metric">
-          <div class="label" data-i18n="dashboard.average_score">Average Score</div>
-          <div class="value" id="avgScoreValue">0</div>
-        </div>
-        <div class="metric">
-          <div class="label" data-i18n="dashboard.sessions">Sessions</div>
-          <div class="value" id="sessionsValue">0</div>
-        </div>
-      </div>
-      <button id="exportDataBtn" data-i18n="dashboard.export">Export Progress (CSV)</button>
-      <button id="resetDataBtn" data-i18n="dashboard.reset">Reset Data</button>
-    </section>
-  </main>
-
-  <footer class="app-footer" role="contentinfo">
-    <small>© <span id="year"></span> Gyaan Arena - Empowering STEM Education</small>
-    <div class="footer-links">
-      <a href="#" data-i18n="footer.about" aria-label="About Gyaan Arena">About</a>
-      <a href="#" data-i18n="footer.privacy" aria-label="Privacy Policy">Privacy</a>
-      <a href="#" data-i18n="footer.help" aria-label="Help and Support">Help</a>
-    </div>
-  </footer>
-
-  <script src="js/i18n.js"></script>
-  <script src="js/progress.js"></script>
-  <script src="js/social.js"></script>
-  <script src="js/achievements.js"></script>
-  <script src="js/games/math-quiz.js"></script>
-  <script src="js/games/math-advanced.js"></script>
-  <script src="js/games/science-match.js"></script>
-  <script src="js/games/science-advanced.js"></script>
-  <script src="js/games/coding-logic.js"></script>
-  <script src="js/games/coding-advanced.js"></script>
-  <script src="js/games/tile-match.js"></script>
-  <script src="js/games/word-games.js"></script>
-  <script src="js/games/logic-puzzles.js"></script>
-  <script src="js/app.js"></script>
-</body>
+      </section>
+      <section id="teacher" class="view" role="tabpanel" aria-labelledby="Teacher">
+        <h2 data-i18n="teacher.title">Teacher Dashboard</h2>
+        <div id="dashboard" class="dashboard">
+          <div class="metric">
+            <div class="label" data-i18n="dashboard.engagement">Engagement</div>
+            <div class="value" id="engagementValue">0%</div>
+          </div>
+          <div class="metric">
+            <div class="label" data-i18n="dashboard.average_score">Average Score</div>
+            <div class="value" id="avgScoreValue">0</div>
+          </div>
+          <div class="metric">
+            <div class="label" data-i18n="dashboard.sessions">Sessions</div>
+            <div class="value" id="sessionsValue">0</div>
+          </div>
+        </div><button id="exportDataBtn" data-i18n="dashboard.export">Export Progress (CSV)</button><button id="resetDataBtn" data-i18n="dashboard.reset">Reset Data</button>
+      </section>
+    </main>
+    <footer class="app-footer" role="contentinfo"><small>© <span id="year"></span> Gyaan Arena - Empowering STEM Education</small>
+      <div class="footer-links"><a href="#" data-i18n="footer.about" aria-label="About Gyaan Arena">About</a><a href="#" data-i18n="footer.privacy" aria-label="Privacy Policy">Privacy</a><a href="#" data-i18n="footer.help" aria-label="Help and Support">Help</a></div>
+    </footer>
+    <script src="js/i18n.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/social.js"></script>
+    <script src="js/achievements.js"></script>
+    <script src="js/games/math-quiz.js"></script>
+    <script src="js/games/math-advanced.js"></script>
+    <script src="js/games/science-match.js"></script>
+    <script src="js/games/science-advanced.js"></script>
+    <script src="js/games/coding-logic.js"></script>
+    <script src="js/games/coding-advanced.js"></script>
+    <script src="js/games/tile-match.js"></script>
+    <script src="js/games/word-games.js"></script>
+    <script src="js/games/logic-puzzles.js"></script>
+    <script src="js/app.js"></script>
+  </body>
 </html>
-
- 
- 

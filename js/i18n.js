@@ -218,6 +218,69 @@
         "footer.about": "माहिती",
         "footer.privacy": "गोपनीयता",
         "footer.help": "मदत"
+      },
+      od: {
+        "app.title": "ଜ୍ଞାନ ଆରେନା",
+        "actions.install": "ଆପ୍‌ ଇନଷ୍ଟଲ୍ କରନ୍ତୁ",
+        "actions.print": "ପ୍ରଗତି ପ୍ରିଣ୍ଟ କରନ୍ତୁ",
+        "tabs.home": "ହୋମ୍",
+        "tabs.math": "ଗଣିତ",
+        "tabs.science": "ବିଜ୍ଞାନ",
+        "tabs.coding": "କୋଡିଂ",
+        "tabs.leaderboard": "ଲିଡରବୋର୍ଡ",
+        "tabs.profile": "ପ୍ରୋଫାଇଲ୍",
+        "tabs.teacher": "ଶିକ୍ଷକ",
+        "home.welcome": "ଜ୍ଞାନ ଆରେନାକୁ ସ୍ୱାଗତ!",
+        "home.intro": "ଇଣ୍ଟର୍‌ଆକ୍ଟିଭ୍ ଗେମ୍ ଓ ଚ୍ୟାଲେଞ୍ଜ୍‌ ମାଧ୍ୟମରେ STEM ବିଷୟରେ ପାରଦର୍ଶୀ ହୋନ୍ତୁ!",
+        "home.card_math_title": "ଗଣିତ ଆରେନା",
+        "home.card_math_desc": "ଦ୍ୱିଘାତ, ଭାଗ, ଜ୍ୟାମିତି ଆଦି →",
+        "home.card_science_title": "ବିଜ୍ଞାନ ଲାବ୍",
+        "home.card_science_desc": "ଭୌତିକ, ରସାୟନ, ଜୀବବିଜ୍ଞାନ ଚ୍ୟାଲେଞ୍ଜ୍‌ →",
+        "home.card_coding_title": "କୋଡ୍ ଆକାଡେମି",
+        "home.card_coding_desc": "ଆଲଗୋରିଥମ୍, ତର୍କ, ସମସ୍ୟା ସମାଧାନ →",
+        "math.title": "ଗଣିତ ଆରେନା",
+        "math.quadratic": "ଦ୍ୱିଘାତ ସମୀକରଣ",
+        "math.fractions": "ଭାଗ ମାଷ୍ଟର",
+        "math.geometry": "ଜ୍ୟାମିତି ଚ୍ୟାଲେଞ୍ଜ୍",
+        "math.algebra": "ବୀଜଗଣିତ ପାହେଳି",
+        "science.title": "ବିଜ୍ଞାନ ଲାବ୍",
+        "science.physics": "ଭୌତିକ ସିମ୍ୟୁଲେଶନ୍",
+        "science.chemistry": "ରସାୟନ ଲାବ୍",
+        "science.biology": "ଜୀବବିଜ୍ଞାନ କ୍ୱିଜ୍",
+        "science.elements": "ପିରିଅଡିକ୍ ଟେବଲ୍",
+        "coding.title": "କୋଡ୍ ଆକାଡେମି",
+        "coding.algorithms": "ଆଲଗୋରିଥମ୍ ଚ୍ୟାଲେଞ୍ଜ୍",
+        "coding.debugging": "କୋଡ୍ ଡିବଗ୍ କରନ୍ତୁ",
+        "coding.datastructures": "ଡାଟା ସଂରଚନା",
+        "coding.patterns": "ପ୍ୟାଟର୍ନ ଚିହ୍ନଟ",
+        "teacher.title": "ଶିକ୍ଷକ ଡ୍ୟାସ୍‌ବୋର୍ଡ",
+        "dashboard.engagement": "ଶିକ୍ଷାର୍ଥୀ ନିମଗ୍ନତା",
+        "dashboard.average_score": "ସରାସରି ଅଂକ",
+        "dashboard.sessions": "ମୋଟ ସେସନ୍",
+        "dashboard.export": "ଡାଟା ଏକ୍ସପୋର୍ଟ (CSV)",
+        "dashboard.reset": "ସମସ୍ତ ଡାଟା ରିସେଟ୍",
+        "leaderboard.title": "ଜ୍ଞାନ ଆରେନା ଲିଡରବୋର୍ଡ",
+        "leaderboard.overall": "ସମଗ୍ର",
+        "leaderboard.math": "ଗଣିତ",
+        "leaderboard.science": "ବିଜ୍ଞାନ",
+        "leaderboard.coding": "କୋଡିଂ",
+        "leaderboard.weekly": "ଏହି ସପ୍ତାହ",
+        "profile.title": "ଆପଣଙ୍କ ପ୍ରୋଫାଇଲ୍",
+        "profile.username": "ଆପଣଙ୍କ ନାମ ଲେଖନ୍ତୁ",
+        "profile.level": "ସ୍ତର",
+        "profile.achievements": "ଉପଲବ୍ଧିଗୁଡିକ",
+        "profile.stats": "ଆପଣଙ୍କ ପରିସଂଖ୍ୟାନ",
+        "stats.streak": "ଦୈନିକ ଅବିରତତା",
+        "stats.points": "ମୋଟ ପଏଣ୍ଟ",
+        "stats.rank": "ଆପଣଙ୍କ ମର୍ଯ୍ୟାଦା",
+        "stats.total_games": "ଖେଳିଥିବା ଖେଳ",
+        "stats.best_subject": "ସର୍ବୋତ୍କୃଷ୍ଟ ବିଷୟ",
+        "stats.accuracy": "ନିଷ୍ପତ୍ତି",
+        "stats.time_spent": "ବ୍ୟୟ ହୋଇଥିବା ସମୟ",
+        "social.share": "ଆପଣଙ୍କ ପ୍ରଗତି ସେୟାର କରନ୍ତୁ",
+        "footer.about": "ବିଷୟରେ",
+        "footer.privacy": "ଗୋପନୀୟତା",
+        "footer.help": "ସାହାଯ୍ୟ"
       }
     };
     
@@ -230,6 +293,13 @@
       const key = element.getAttribute('data-i18n');
       if (translations[key]) {
         element.textContent = translations[key];
+      }
+    });
+    // Handle inputs with placeholder translations
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+      const key = element.getAttribute('data-i18n-placeholder');
+      if (translations[key]) {
+        element.setAttribute('placeholder', translations[key]);
       }
     });
     
