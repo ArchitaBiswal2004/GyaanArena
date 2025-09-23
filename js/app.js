@@ -120,15 +120,15 @@
     const form = document.getElementById('loginForm');
     if (!form) return;
     const studentIdInput = document.getElementById('studentId');
-    const collegeIdInput = document.getElementById('collegeId');
+    const schoolIdInput = document.getElementById('schoolId');
     const errorEl = document.getElementById('loginError');
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const studentId = studentIdInput ? studentIdInput.value.trim() : '';
-      const collegeId = collegeIdInput ? collegeIdInput.value.trim() : '';
+      const schoolId = schoolIdInput ? schoolIdInput.value.trim() : '';
 
-    const valid = studentId.length > 0 && collegeId.length >= 6;
+      const valid = studentId.length > 0 && schoolId.length >= 6;
       if (!valid) {
         if (errorEl) errorEl.style.display = 'block';
         return;
@@ -137,7 +137,7 @@
       if (errorEl) errorEl.style.display = 'none';
       // Persist simple session
       localStorage.setItem('session.studentId', studentId);
-      localStorage.setItem('session.collegeId', collegeId);
+      localStorage.setItem('session.schoolId', schoolId);
       showMain();
     });
   }
